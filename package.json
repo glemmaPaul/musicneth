@@ -1,0 +1,136 @@
+{
+  "name": "music-share",
+  "version": "0.1.0",
+  "description": "Sharing music through ipfs, contributing back to the artist directly",
+  "main": "app/index.js",
+  "scripts": {
+    "test": "",
+    "build": "webpack --config build/webpack.prod.js",
+    "dev": "node build/server.js",
+    "app": "cross-env NODE_ENV=development electron app/",
+    "lint": "xo **/client/**/*.{vue,js} **/app/**/*.js !node_modules/**",
+    "start": "electron-forge start",
+    "start-dev": "NODE_ENV=development DEBUG=music:share* electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "author": "paul@glemma.nl",
+  "license": "MIT",
+  "xo": {
+    "extends": "./.eslintrc",
+    "esnext": true,
+    "envs": [
+      "browser"
+    ]
+  },
+  "babel": {
+    "presets": [
+      [
+        "vue-app",
+        {
+          "useBuiltIns": true
+        }
+      ]
+    ]
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {},
+      "postcss-nested": {}
+    }
+  },
+  "browserslist": [
+    "last 2 versions",
+    "ie > 8"
+  ],
+  "dependencies": {
+    "babel-runtime": "^6.18.0",
+    "bitcore-mnemonic": "^1.5.0",
+    "debug": "^3.1.0",
+    "electron-compile": "^6.4.2",
+    "electron-squirrel-startup": "^1.0.0",
+    "eth-lightwallet": "^3.0.1",
+    "ethers": "^3.0.15",
+    "go-ipfs-dep": "^0.4.14",
+    "ipfsd-ctl": "^0.32.1",
+    "keytar": "^4.2.1",
+    "openpgp": "^3.0.8",
+    "promise-polyfill": "^6.0.2",
+    "vue": "^2.2.0",
+    "vue-router": "^2.0.0",
+    "vuex": "^2.0.0",
+    "vuex-router-sync": "^4.0.0",
+    "web3": "^1.0.0-beta.34"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.4.0",
+    "babel-core": "^6.16.0",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-preset-vue-app": "^1.1.1",
+    "chalk": "^1.1.3",
+    "copy-webpack-plugin": "^4.0.1",
+    "cross-env": "^2.0.0",
+    "css-loader": "^0.23.1",
+    "electron-devtools-installer": "^2.0.1",
+    "electron-forge": "^5.2.0",
+    "electron-prebuilt-compile": "1.8.4",
+    "electron-reload": "^1.2.2",
+    "eslint-config-vue": "latest",
+    "eslint-plugin-vue": "latest",
+    "express": "^4.14.0",
+    "extract-text-webpack-plugin": "^2.0.0-rc.3",
+    "file-loader": "^0.9.0",
+    "friendly-errors-webpack-plugin": "^1.1.2",
+    "html-webpack-plugin": "^2.22.0",
+    "offline-plugin": "^4.5.3",
+    "postcss-loader": "^0.9.1",
+    "postcss-nested": "^1.0.0",
+    "raw-loader": "^0.5.1",
+    "rimraf": "^2.6.1",
+    "style-loader": "^0.13.1",
+    "vue-loader": "^11.0.0",
+    "vue-template-compiler": "^2.2.0",
+    "webpack": "2.2.0",
+    "webpack-dev-server": "^2.6.1",
+    "xo": "^0.18.0"
+  },
+  "config": {
+    "electronPackagerConfig": {
+      "dir": "../dist"
+    },
+    "forge": {
+      "make_targets": {
+        "win32": [
+          "squirrel"
+        ],
+        "darwin": [
+          "zip"
+        ],
+        "linux": [
+          "deb",
+          "rpm"
+        ]
+      },
+      "electronPackagerConfig": {
+        "packageManager": "yarn"
+      },
+      "electronWinstallerConfig": {
+        "name": "music_share"
+      },
+      "electronInstallerDebian": {},
+      "electronInstallerRedhat": {},
+      "github_repository": {
+        "owner": "",
+        "name": ""
+      },
+      "windowsStoreConfig": {
+        "packageName": "",
+        "name": "musicshare"
+      }
+    }
+  }
+}

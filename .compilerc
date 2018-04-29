@@ -1,0 +1,38 @@
+{
+  "env": {
+    "development": {
+      "application/javascript": {
+        "presets": [
+          [
+            "env",
+            {
+              "targets": {
+                "electron": "1.8.4"
+              }
+            }
+          ],
+          "vue-app",
+          "stage-2"
+        ],
+        "sourceMaps": "inline"
+      }
+    },
+    "production": {
+      "application/javascript": {
+        "presets": [
+          [
+            "env",
+            {
+              "targets": {
+                "electron": "1.8.4"
+              }
+            }
+          ],
+          "vue-app",
+          "stage-2"
+        ],
+        "sourceMaps": "none"
+      }
+    }
+  }
+}
