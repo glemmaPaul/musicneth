@@ -1,0 +1,21 @@
+CACHE MANIFEST
+#ver:4/29/2018, 8:28:25 PM
+#plugin:4.9.0
+
+CACHE:
+./client.687cc3eb.js
+./vendor.e956bd1c.js
+./manifest.35c117b9.js
+./styles.576f9081.css
+./
+./contracts/Artist.json
+./contracts/Migrations.json
+./contracts/Application.json
+./favicon.ico
+./contracts/Track.json
+
+NETWORK:
+*
+
+FALLBACK:
+/ /

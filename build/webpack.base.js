@@ -38,6 +38,10 @@ module.exports = {
   module: {
     loaders: [
       {
+        test: /\.sol$/,
+        loaders: ['web3', 'solc']
+      },
+      {
         test: /\.vue$/,
         loaders: ['vue-loader']
       },

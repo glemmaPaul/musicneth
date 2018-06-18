@@ -1,4 +1,4 @@
-import fileHandler from './upload/files'
+import torrentHandler from './torrent'
 import authHandler from './auth'
 
 /**
@@ -6,6 +6,6 @@ import authHandler from './auth'
  * @param  {config} opts
  */
 export default function(opts) {
-  fileHandler(opts)
+  torrentHandler(opts)
   authHandler(opts)
 }

@@ -5,7 +5,11 @@ import electron from 'electron'
 import DaemonFactory from 'ipfsd-ctl'
 import setupHandlers from './handlers'
 import handleKnownErrors from './errors'
+import webtorrent from './torrent/client'
 import config from './config'
+import { startNode } from './p2p'
+
+startNode()
 
 // Local variables
 var dialog = electron.dialog,
@@ -25,18 +29,9 @@ if (isDev) {
   require('electron-reload')(__dirname);
 }
 
-
-// Ensure it's a single instance.
-app.makeSingleInstance(() => {
-  debug('Trying to start a second instance')
-  dialog.showErrorBox(
-    'Multiple instances',
-    'Sorry, but there can be only one instance of IPFS Desktop running at the same time.'
-  )
-})
-
 config.send = send
 config.ipfs = () => IPFS
+config.webtorrent = webtorrent
 
 
 function onRequestState(st) {
@@ -172,8 +167,8 @@ function onWillQuit (node, event) {
 }
 
 
-function send (state) {
-  console.log(state)
+function send (key, ...args) {
+  mainWindow.webContents.send(key, ...args)
 }
 
 // Initalize a new IPFS node
@@ -255,45 +250,6 @@ function initialize (path, node) {
     })
   })
 }
-
-
-// main entry point
-DaemonFactory.create().spawn({
-  repoPath: config.ipfsPath,
-  disposable: false,
-  init: false,
-  start: false,
-  defaultAddrs: true
-}, (err, node) => {
-  if (err) {
-    // We can't start if we fail to aquire
-    // a ipfs node
-    debug(err.stack)
-    process.exit(1)
-  }
-
-  let appReady = () => {
-    debug('Application is ready')
-
-    ipcMain.on('request-state', onRequestState.bind(null, node))
-    ipcMain.on('start-daemon', onStartDaemon.bind(null, node))
-    ipcMain.on('stop-daemon', onStopDaemon.bind(null, node, () => {}))
-    ipcMain.on('quit-application', app.quit.bind(app))
-    app.once('will-quit', onWillQuit.bind(null, node))
-
-    setupHandlers(config)
-
-    let exists = fs.existsSync(node.repoPath)
-
-    if (!exists) {
-      initialize(config.ipfsPath, node)
-    } else {
-      onStartDaemon(node)
-    }
-  }
-
-  appReady()
-})
 
 function createWindow() {
   // Create the browser window.

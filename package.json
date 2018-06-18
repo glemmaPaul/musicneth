@@ -11,7 +11,7 @@
     "lint": "xo **/client/**/*.{vue,js} **/app/**/*.js !node_modules/**",
     "start": "electron-forge start",
     "start-dev": "NODE_ENV=development DEBUG=music:share* electron-forge start",
-    "package": "electron-forge package",
+    "package": "npm run build; electron-forge package",
     "make": "electron-forge make"
   },
   "author": "paul@glemma.nl",
@@ -46,6 +46,7 @@
   "dependencies": {
     "babel-runtime": "^6.18.0",
     "bitcore-mnemonic": "^1.5.0",
+    "dat-node": "^3.5.9",
     "debug": "^3.1.0",
     "electron-compile": "^6.4.2",
     "electron-squirrel-startup": "^1.0.0",
@@ -54,13 +55,21 @@
     "go-ipfs-dep": "^0.4.14",
     "ipfsd-ctl": "^0.32.1",
     "keytar": "^4.2.1",
+    "libp2p": "^0.20.4",
+    "libp2p-kad-dht": "^0.10.0",
+    "libp2p-mplex": "^0.7.0",
+    "libp2p-railing": "^0.9.1",
+    "libp2p-secio": "^0.10.0",
+    "libp2p-tcp": "^0.12.0",
     "openpgp": "^3.0.8",
+    "peer-info": "^0.14.1",
     "promise-polyfill": "^6.0.2",
     "vue": "^2.2.0",
     "vue-router": "^2.0.0",
     "vuex": "^2.0.0",
     "vuex-router-sync": "^4.0.0",
-    "web3": "^1.0.0-beta.34"
+    "web3": "^1.0.0-beta.34",
+    "webtorrent": "^0.99.3"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
@@ -91,9 +100,11 @@
     "postcss-nested": "^1.0.0",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.6.1",
+    "solc-loader": "^1.1.1",
     "style-loader": "^0.13.1",
     "vue-loader": "^11.0.0",
     "vue-template-compiler": "^2.2.0",
+    "web3-loader": "^1.1.2",
     "webpack": "2.2.0",
     "webpack-dev-server": "^2.6.1",
     "xo": "^0.18.0"

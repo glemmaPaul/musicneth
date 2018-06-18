@@ -1,6 +1,6 @@
 pragma solidity ^0.4.19;
 
-import { Artist } from './Artist.sol'
+import { Artist } from './Artist.sol';
 
 
 contract Application {
@@ -15,8 +15,8 @@ contract Application {
     owner = msg.sender;
   }
 
-  function createArtist(address owner, string name, string genre) returns (address artistAddress) {
-    Artist c = (new Artist(address(self), owner, name, genre));
+  function createArtist(address _owner, string _name, string _genre) public returns (address artistAddress) {
+    Artist c = (new Artist(_owner, _name, _genre));
     return address(c);
   }
 
